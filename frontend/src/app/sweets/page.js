@@ -1,4 +1,4 @@
-import SweetList from '../components/SweetList'
+import SweetList from '../../components/SweetList'
 
 export default function SweetsPage() {
   return (
