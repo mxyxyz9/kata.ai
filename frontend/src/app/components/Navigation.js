@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Store, Home, Package, BarChart3, Users, Heart, ShoppingCart, User, Search, Menu, X } from 'lucide-react';
+import { Store, Home, Package, BarChart3, Users, Heart, ShoppingCart, User, Search, Menu, X, Info, Mail, Phone, FileText, HelpCircle, BookOpen } from 'lucide-react';
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,6 +11,10 @@ export default function Navigation() {
   const navItems = [
     { href: '/', label: 'Home', icon: Home },
     { href: '/sweets', label: 'Sweets', icon: Package },
+    { href: '/about', label: 'About', icon: Info },
+    { href: '/services', label: 'Services', icon: Heart },
+    { href: '/contact', label: 'Contact', icon: Mail },
+    { href: '/blog', label: 'Blog', icon: BookOpen },
     { href: '/inventory', label: 'Inventory', icon: BarChart3 },
     { href: '/users', label: 'Users', icon: Users },
   ];

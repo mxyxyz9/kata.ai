@@ -1,5 +1,5 @@
 import { Inter } from 'next/font/google'
-import { Store, Home, Package, BarChart3, Users, Phone, Mail, MapPin, Clock, Facebook, Twitter, Instagram, Heart, ShoppingCart, User, Search, Menu, X, HeartHandshake, Gift, Star, Shield, Truck, CreditCard, Coffee } from 'lucide-react'
+import { Store, Home, Package, BarChart3, Users, Phone, Mail, MapPin, Clock, Facebook, Twitter, Instagram, Heart, ShoppingCart, User, Search, Menu, X, HeartHandshake, Gift, Star, Shield, Truck, CreditCard, Coffee, Info, BookOpen, HelpCircle } from 'lucide-react'
 import './globals.css'
 import Navigation from './components/Navigation'
 
@@ -101,6 +101,30 @@ export default function RootLayout({ children }) {
                     <a href="/sweets" className="text-neutral-300 hover:text-white transition-colors duration-200 flex items-center space-x-2 group">
                       <Package className="w-4 h-4 group-hover:scale-110 transition-transform" />
                       <span>Our Sweets</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/about" className="text-neutral-300 hover:text-white transition-colors duration-200 flex items-center space-x-2 group">
+                      <Info className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                      <span>About Us</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/services" className="text-neutral-300 hover:text-white transition-colors duration-200 flex items-center space-x-2 group">
+                      <Heart className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                      <span>Services</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/contact" className="text-neutral-300 hover:text-white transition-colors duration-200 flex items-center space-x-2 group">
+                      <Mail className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                      <span>Contact</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/blog" className="text-neutral-300 hover:text-white transition-colors duration-200 flex items-center space-x-2 group">
+                      <BookOpen className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                      <span>Blog</span>
                     </a>
                   </li>
                   <li>
@@ -262,14 +286,14 @@ export default function RootLayout({ children }) {
                   </div>
                 </div>
                 <div className="flex space-x-6 text-sm">
-                  <a href="#" className="text-neutral-400 hover:text-white transition-colors duration-200">
+                  <a href="/privacy" className="text-neutral-400 hover:text-white transition-colors duration-200">
                     Privacy Policy
                   </a>
-                  <a href="#" className="text-neutral-400 hover:text-white transition-colors duration-200">
+                  <a href="/terms" className="text-neutral-400 hover:text-white transition-colors duration-200">
                     Terms of Service
                   </a>
-                  <a href="#" className="text-neutral-400 hover:text-white transition-colors duration-200">
-                    Cookie Policy
+                  <a href="/faq" className="text-neutral-400 hover:text-white transition-colors duration-200">
+                    FAQ
                   </a>
                   <a href="#" className="text-neutral-400 hover:text-white transition-colors duration-200">
                     Accessibility
