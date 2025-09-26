@@ -85,70 +85,73 @@ export default function ContactPage() {
 
   const colorClasses = {
     pink: {
-      bg: "from-pink-50 to-pink-100",
-      icon: "text-pink-500",
+      bg: "from-primary-50 via-cream-50 to-primary-100",
+      icon: "text-primary-600",
       button: "sweet-button",
-      border: "border-pink-200"
+      border: "border-primary-200"
     },
     purple: {
-      bg: "from-purple-50 to-purple-100",
-      icon: "text-purple-500",
+      bg: "from-secondary-50 via-cream-50 to-secondary-100",
+      icon: "text-secondary-600",
       button: "sweet-button",
-      border: "border-purple-200"
+      border: "border-secondary-200"
     },
     indigo: {
-      bg: "from-indigo-50 to-indigo-100",
-      icon: "text-indigo-500",
+      bg: "from-accent-50 via-cream-50 to-accent-100",
+      icon: "text-accent-600",
       button: "cream-button",
-      border: "border-indigo-200"
+      border: "border-accent-200"
     },
     green: {
-      bg: "from-green-50 to-green-100",
-      icon: "text-green-500",
+      bg: "from-neutral-50 via-cream-50 to-neutral-100",
+      icon: "text-neutral-600",
       button: "sweet-button",
-      border: "border-green-200"
+      border: "border-neutral-200"
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50">
+    <div className="min-h-screen bg-gradient-to-br from-cream-50 via-primary-50 to-secondary-50">
       {/* Hero Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-pink-100 via-purple-100 to-indigo-100 opacity-50"></div>
+      <section className="relative py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-100/30 via-cream-100/30 to-secondary-100/30"></div>
         <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-20 h-20 bg-pink-200 rounded-full opacity-30 animate-float"></div>
-          <div className="absolute top-40 right-20 w-16 h-16 bg-purple-200 rounded-full opacity-30 animate-float" style={{animationDelay: '1s'}}></div>
-          <div className="absolute bottom-20 left-1/4 w-12 h-12 bg-indigo-200 rounded-full opacity-30 animate-float" style={{animationDelay: '2s'}}></div>
+          <div className="absolute top-10 left-10 w-32 h-32 bg-primary-200 rounded-full opacity-30 animate-float"></div>
+          <div className="absolute top-40 right-20 w-24 h-24 bg-secondary-200 rounded-full opacity-30 animate-float" style={{animationDelay: '1s'}}></div>
+          <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-cream-200 rounded-full opacity-30 animate-float" style={{animationDelay: '2s'}}></div>
         </div>
         
         <div className={`relative max-w-7xl mx-auto text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="animate-bounceIn mb-6">
-            <MessageCircle className="w-16 h-16 mx-auto text-pink-500" />
+          <div className="animate-bounce-in mb-8">
+            <MessageCircle className="w-20 h-20 mx-auto text-primary-600" />
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold text-gray-800 mb-6 animate-fadeInUp">
-            Get In Touch
+          <h1 className="text-6xl lg:text-7xl font-bold text-neutral-900 mb-8 animate-fade-in bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
+            Connect With Our Artisans
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto animate-fadeInUp" style={{animationDelay: '200ms'}}>
-            We'd love to hear from you! Whether you have questions about our sweets, want to place a custom order, or just want to say hello.
+          <p className="text-2xl text-neutral-600 max-w-4xl mx-auto animate-fade-in leading-relaxed" style={{animationDelay: '200ms'}}>
+            We'd love to hear from you! Whether you have questions about our artisan sweets, want to place a custom order, or just want to say hello.
           </p>
         </div>
       </section>
 
       {/* Contact Information Cards */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 stagger-children">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-secondary-100/20 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-primary-100/20 rounded-full blur-3xl animate-float animate-delay-2000"></div>
+        
+        <div className="max-w-7xl mx-auto relative">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 stagger-children">
             {contactInfo.map((info, index) => {
               const colors = colorClasses[info.color];
               return (
-                <div key={info.title} className={`bg-gradient-to-br ${colors.bg} rounded-3xl p-8 text-center interactive-card animate-cardEntrance`} style={{animationDelay: `${index * 100}ms`}}>
-                  <div className="animate-bounceIn mb-6">
-                    <info.icon className={`w-16 h-16 mx-auto ${colors.icon}`} />
+                <div key={info.title} className={`bg-gradient-to-br ${colors.bg} rounded-3xl p-10 text-center morph-card group hover:scale-105 transition-all duration-500 animate-slide-up`} style={{animationDelay: `${index * 150}ms`}}>
+                  <div className="animate-bounce-in mb-8 group-hover:scale-110 transition-transform duration-300">
+                    <info.icon className={`w-20 h-20 mx-auto ${colors.icon}`} />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-4">{info.title}</h3>
-                  <p className="text-gray-600 mb-2">{info.content}</p>
-                  {info.subtitle && <p className="text-sm text-gray-500 mb-6">{info.subtitle}</p>}
-                  <button className={`${colors.button} interactive-button w-full`}>
+                  <h3 className="text-2xl font-bold text-neutral-900 mb-6">{info.title}</h3>
+                  <p className="text-lg text-neutral-600 mb-4 leading-relaxed">{info.content}</p>
+                  {info.subtitle && <p className="text-base text-neutral-500 mb-8">{info.subtitle}</p>}
+                  <button className={`${colors.button} interactive-button w-full text-lg py-4 rounded-2xl group-hover:scale-105 transition-all duration-300`}>
                     {info.buttonText}
                   </button>
                 </div>
@@ -159,21 +162,26 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16 animate-fadeInUp">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">Send Us a Message</h2>
-            <p className="text-xl text-gray-600">
-              Have a question or special request? Fill out the form below and we'll get back to you soon!
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-cream-100/20 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-0 right-0 w-80 h-80 bg-secondary-100/20 rounded-full blur-3xl animate-float animate-delay-2000"></div>
+        
+        <div className="max-w-5xl mx-auto relative">
+          <div className="text-center mb-20 animate-fade-in">
+            <h2 className="text-5xl lg:text-6xl font-bold text-neutral-900 mb-6 bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
+              Send Us a Message
+            </h2>
+            <p className="text-2xl text-neutral-600 max-w-3xl mx-auto font-light leading-relaxed">
+              Have a question or special request? Fill out the form below and our artisan team will get back to you within 24 hours!
             </p>
           </div>
           
-          <div className="bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50 rounded-3xl p-8 morph-card animate-fadeInUp" style={{animationDelay: '200ms'}}>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-primary-50 via-cream-50 to-secondary-50 rounded-3xl p-12 morph-card animate-slide-up">
+            <form onSubmit={handleSubmit} className="space-y-8">
+              <div className="grid md:grid-cols-2 gap-8">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
-                    <User className="w-4 h-4 inline mr-2" />
+                  <label htmlFor="name" className="block text-lg font-semibold text-neutral-700 mb-4">
+                    <User className="w-5 h-5 inline mr-3" />
                     Your Name *
                   </label>
                   <input
@@ -183,14 +191,14 @@ export default function ContactPage() {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="sweet-input w-full interactive-input"
+                    className="sweet-input w-full interactive-input text-lg py-4 px-6 rounded-2xl"
                     placeholder="Enter your full name"
                   />
                 </div>
                 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
-                    <MailIcon className="w-4 h-4 inline mr-2" />
+                  <label htmlFor="email" className="block text-lg font-semibold text-neutral-700 mb-4">
+                    <MailIcon className="w-5 h-5 inline mr-3" />
                     Email Address *
                   </label>
                   <input
@@ -200,16 +208,16 @@ export default function ContactPage() {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="sweet-input w-full interactive-input"
+                    className="sweet-input w-full interactive-input text-lg py-4 px-6 rounded-2xl"
                     placeholder="your.email@example.com"
                   />
                 </div>
               </div>
               
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid md:grid-cols-2 gap-8">
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
-                    <PhoneIcon className="w-4 h-4 inline mr-2" />
+                  <label htmlFor="phone" className="block text-lg font-semibold text-neutral-700 mb-4">
+                    <PhoneIcon className="w-5 h-5 inline mr-3" />
                     Phone Number
                   </label>
                   <input
@@ -218,14 +226,14 @@ export default function ContactPage() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="sweet-input w-full interactive-input"
+                    className="sweet-input w-full interactive-input text-lg py-4 px-6 rounded-2xl"
                     placeholder="(555) 123-4567"
                   />
                 </div>
                 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-semibold text-gray-700 mb-2">
-                    <Star className="w-4 h-4 inline mr-2" />
+                  <label htmlFor="subject" className="block text-lg font-semibold text-neutral-700 mb-4">
+                    <Star className="w-5 h-5 inline mr-3" />
                     Subject *
                   </label>
                   <select
@@ -234,7 +242,7 @@ export default function ContactPage() {
                     value={formData.subject}
                     onChange={handleInputChange}
                     required
-                    className="sweet-input w-full interactive-input"
+                    className="sweet-input w-full interactive-input text-lg py-4 px-6 rounded-2xl"
                   >
                     <option value="">Select a subject</option>
                     <option value="general">General Inquiry</option>
@@ -248,8 +256,8 @@ export default function ContactPage() {
               </div>
               
               <div>
-                <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
-                  <MessageCircle className="w-4 h-4 inline mr-2" />
+                <label htmlFor="message" className="block text-lg font-semibold text-neutral-700 mb-4">
+                  <MessageCircle className="w-5 h-5 inline mr-3" />
                   Your Message *
                 </label>
                 <textarea
@@ -258,16 +266,16 @@ export default function ContactPage() {
                   value={formData.message}
                   onChange={handleInputChange}
                   required
-                  rows={6}
-                  className="sweet-input w-full interactive-input resize-none"
+                  rows={8}
+                  className="sweet-input w-full interactive-input resize-none text-lg py-4 px-6 rounded-2xl"
                   placeholder="Tell us how we can help you..."
                 />
               </div>
               
               {submitMessage && (
-                <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-xl animate-fadeInUp">
-                  <div className="flex items-center">
-                    <Heart className="w-5 h-5 mr-2" />
+                <div className="bg-green-100 border border-green-400 text-green-700 px-6 py-4 rounded-2xl animate-fade-in">
+                  <div className="flex items-center text-lg">
+                    <Heart className="w-6 h-6 mr-3" />
                     {submitMessage}
                   </div>
                 </div>
@@ -277,16 +285,16 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="sweet-button interactive-button px-8 py-4 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="sweet-button interactive-button px-10 py-6 text-xl disabled:opacity-50 disabled:cursor-not-allowed rounded-2xl"
                 >
                   {isSubmitting ? (
                     <span className="flex items-center">
-                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
+                      <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white mr-4"></div>
                       Sending Message...
                     </span>
                   ) : (
                     <span className="flex items-center">
-                      <Send className="w-5 h-5 mr-2" />
+                      <Send className="w-6 h-6 mr-3" />
                       Send Message
                     </span>
                   )}
@@ -298,24 +306,29 @@ export default function ContactPage() {
       </section>
 
       {/* Map Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16 animate-fadeInUp">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">Find Us Here</h2>
-            <p className="text-xl text-gray-600">
-              Come visit our charming sweet shop in person!
+      <section className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-primary-100/20 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-0 right-0 w-80 h-80 bg-secondary-100/20 rounded-full blur-3xl animate-float animate-delay-2000"></div>
+        
+        <div className="max-w-7xl mx-auto relative">
+          <div className="text-center mb-20 animate-fade-in">
+            <h2 className="text-5xl lg:text-6xl font-bold text-neutral-900 mb-6 bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
+              Find Our Artisan Shop
+            </h2>
+            <p className="text-2xl text-neutral-600 max-w-3xl mx-auto font-light leading-relaxed">
+              Come visit our charming artisan sweet shop in person and experience the magic!
             </p>
           </div>
           
-          <div className="bg-white rounded-3xl shadow-2xl overflow-hidden morph-card animate-fadeInUp" style={{animationDelay: '200ms'}}>
-            <div className="aspect-w-16 aspect-h-9 bg-gradient-to-br from-pink-100 via-purple-100 to-indigo-100 flex items-center justify-center" style={{aspectRatio: '16/9'}}>
+          <div className="bg-white rounded-3xl shadow-3xl overflow-hidden morph-card animate-slide-up">
+            <div className="aspect-w-16 aspect-h-9 bg-gradient-to-br from-primary-100 via-cream-100 to-secondary-100 flex items-center justify-center p-12" style={{aspectRatio: '16/9'}}>
               <div className="text-center">
-                <MapPinIcon className="w-24 h-24 mx-auto text-pink-500 mb-4 animate-bounceIn" />
-                <h3 className="text-2xl font-bold text-gray-800 mb-2">Sweet Delights Location</h3>
-                <p className="text-gray-600 mb-4">123 Sweet Street, Confectionery District</p>
-                <p className="text-gray-600 mb-6">Sugar City, SC 12345</p>
-                <button className="sweet-button interactive-button">
-                  <MapPin className="w-5 h-5 mr-2" />
+                <MapPinIcon className="w-32 h-32 mx-auto text-primary-600 mb-8 animate-bounce-in" />
+                <h3 className="text-3xl font-bold text-neutral-900 mb-4">Artisan Sweet Delights</h3>
+                <p className="text-xl text-neutral-600 mb-6">123 Sweet Street, Artisan District</p>
+                <p className="text-xl text-neutral-600 mb-8">Sugar City, SC 12345</p>
+                <button className="sweet-button interactive-button text-xl px-8 py-4 rounded-2xl">
+                  <MapPin className="w-6 h-6 mr-3" />
                   Open in Google Maps
                 </button>
               </div>
@@ -325,22 +338,43 @@ export default function ContactPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
-        <div className="max-w-4xl mx-auto text-center animate-fadeInUp">
-          <h2 className="text-4xl font-bold text-white mb-6">Stay Connected</h2>
-          <p className="text-xl text-white/90 mb-8">
-            Follow us on social media for the latest sweet creations and special offers!
+      <section className="py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary-600 via-primary-700 to-secondary-700 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-white/5"></div>
+        <div className="absolute top-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-0 right-0 w-80 h-80 bg-white/10 rounded-full blur-3xl animate-float animate-delay-2000"></div>
+        
+        <div className="max-w-5xl mx-auto text-center relative animate-fade-in">
+          <h2 className="text-5xl lg:text-6xl font-bold text-white mb-8">Stay Connected With Our Artisans</h2>
+          <p className="text-2xl text-white/90 mb-12 max-w-4xl mx-auto font-light leading-relaxed">
+            Follow us on social media for the latest artisan sweet creations, behind-the-scenes content, and exclusive special offers!
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-pink-500 px-6 py-3 rounded-full font-semibold hover:bg-pink-50 transition-all duration-200 interactive-button">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <button className="bg-white text-primary-600 px-8 py-4 rounded-2xl font-semibold hover:bg-primary-50 transition-all duration-300 interactive-button text-lg">
               Facebook
             </button>
-            <button className="bg-white text-purple-500 px-6 py-3 rounded-full font-semibold hover:bg-purple-50 transition-all duration-200 interactive-button">
+            <button className="bg-white text-secondary-600 px-8 py-4 rounded-2xl font-semibold hover:bg-secondary-50 transition-all duration-300 interactive-button text-lg">
               Instagram
             </button>
-            <button className="bg-white text-indigo-500 px-6 py-3 rounded-full font-semibold hover:bg-indigo-50 transition-all duration-200 interactive-button">
+            <button className="bg-white text-accent-600 px-8 py-4 rounded-2xl font-semibold hover:bg-accent-50 transition-all duration-300 interactive-button text-lg">
               Twitter
             </button>
+          </div>
+          
+          {/* Social Proof */}
+          <div className="flex justify-center items-center space-x-16 mt-16 animate-fade-in animate-delay-600">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-white mb-2">10K+</div>
+              <div className="text-white/80">Happy Customers</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-white mb-2">50+</div>
+              <div className="text-white/80">Artisan Creations</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-white mb-2">5★</div>
+              <div className="text-white/80">Average Rating</div>
+            </div>
           </div>
         </div>
       </section>

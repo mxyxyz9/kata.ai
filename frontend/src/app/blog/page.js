@@ -133,77 +133,88 @@ export default function BlogPage() {
   const featuredPosts = blogPosts.filter(post => post.featured);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-cream-50 to-secondary-50">
       {/* Hero Section */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-pink-100 via-purple-100 to-indigo-100 opacity-50"></div>
-        <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-20 h-20 bg-pink-200 rounded-full opacity-30 animate-float"></div>
-          <div className="absolute top-40 right-20 w-16 h-16 bg-purple-200 rounded-full opacity-30 animate-float" style={{animationDelay: '1s'}}></div>
-          <div className="absolute bottom-20 left-1/4 w-12 h-12 bg-indigo-200 rounded-full opacity-30 animate-float" style={{animationDelay: '2s'}}></div>
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-primary-100 via-cream-100 to-secondary-100 opacity-50" />
+        <div className="absolute top-20 left-10 w-40 h-40 bg-primary-200 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-20 right-10 w-32 h-32 bg-secondary-200 rounded-full blur-2xl animate-float" style={{animationDelay: '2s'}} />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-accent-200 rounded-full blur-3xl animate-pulse" />
         
-        <div className={`relative max-w-7xl mx-auto text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="animate-bounceIn mb-6">
-            <BookOpen className="w-16 h-16 mx-auto text-pink-500" />
+        <div className="relative max-w-4xl mx-auto text-center animate-fade-in">
+          <div className="animate-bounce-in mb-8">
+            <Candy className="w-20 h-20 mx-auto text-primary-600" />
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold text-gray-800 mb-6 animate-fadeInUp">
-            Sweet Stories & Tips
+          <h1 className="text-6xl font-bold text-neutral-800 mb-6">
+            Sweet Stories & <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">Confectionery</span> Tips
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto animate-fadeInUp" style={{animationDelay: '200ms'}}>
-            Discover the latest trends, tips, and stories from the world of sweets and confectionery.
+          <p className="text-2xl text-neutral-600 mb-8 max-w-2xl mx-auto leading-relaxed">
+            Discover the latest trends, tips, and stories from the world of artisan confectionery. 
+            Learn, share, and indulge in sweet knowledge.
           </p>
+          <div className="flex flex-wrap justify-center gap-6">
+            <button className="sweet-button interactive-button px-8 py-4 text-lg rounded-2xl">
+              <BookOpen className="w-6 h-6 mr-3" />
+              Browse Articles
+            </button>
+            <button className="cream-button interactive-button px-8 py-4 text-lg rounded-2xl">
+              <Share2 className="w-6 h-6 mr-3" />
+              Share Your Story
+            </button>
+          </div>
         </div>
       </section>
 
       {/* Featured Posts */}
       {featuredPosts.length > 0 && (
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+        <section className="py-16 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-12 animate-fadeInUp">
-              <h2 className="text-3xl font-bold text-gray-800 mb-4">Featured Stories</h2>
-              <p className="text-lg text-gray-600">Our most popular and trending articles</p>
+            <div className="text-center mb-12 animate-fade-in">
+              <h2 className="text-4xl font-bold text-neutral-800 mb-4">Featured Stories</h2>
+              <p className="text-xl text-neutral-600">Handpicked articles from our confectionery experts</p>
             </div>
-            
-            <div className="grid md:grid-cols-2 gap-8 stagger-children">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-children">
               {featuredPosts.map((post, index) => (
-                <div key={post.id} className="bg-gradient-to-br from-pink-50 to-purple-50 rounded-3xl overflow-hidden shadow-xl interactive-card animate-cardEntrance" style={{animationDelay: `${index * 200}ms`}}>
-                  <div className="h-48 bg-gradient-to-br from-pink-200 to-purple-200 flex items-center justify-center">
-                    <Candy className="w-16 h-16 text-pink-600 animate-pulseGlow" />
+                <div key={post.id} className="bg-white rounded-3xl overflow-hidden shadow-2xl morph-card interactive-card animate-slide-up group" style={{animationDelay: `${index * 150}ms`}}>
+                  <div className="h-56 bg-gradient-to-br from-primary-100 via-cream-100 to-secondary-100 flex items-center justify-center relative">
+                    <Sparkles className="w-16 h-16 text-primary-600 animate-pulse" />
+                    <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold text-primary-600">
+                      Featured
+                    </div>
                   </div>
                   <div className="p-8">
                     <div className="flex items-center justify-between mb-4">
-                      <span className="bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm font-semibold">
-                        Featured
+                      <span className="bg-secondary-100 text-secondary-800 px-3 py-1 rounded-full text-xs font-semibold">
+                        {post.category}
                       </span>
-                      <div className="flex items-center space-x-4 text-sm text-gray-500">
+                      <div className="flex items-center space-x-4 text-sm text-neutral-500">
                         <span className="flex items-center">
-                          <Clock className="w-4 h-4 mr-1" />
+                          <Clock className="w-5 h-5 mr-2" />
                           {post.readTime}
                         </span>
                         <span className="flex items-center">
-                          <Heart className="w-4 h-4 mr-1" />
+                          <Heart className="w-5 h-5 mr-2" />
                           {post.likes}
                         </span>
                       </div>
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-800 mb-3 hover:text-pink-600 transition-colors cursor-pointer">
+                    <h3 className="text-2xl font-bold text-neutral-800 mb-3 hover:text-primary-600 transition-colors cursor-pointer group-hover:translate-x-1 transform duration-200">
                       {post.title}
                     </h3>
-                    <p className="text-gray-600 mb-4 line-clamp-3">{post.excerpt}</p>
+                    <p className="text-neutral-600 mb-6 line-clamp-3 leading-relaxed">{post.excerpt}</p>
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        <div className="w-8 h-8 bg-gradient-to-br from-pink-300 to-purple-300 rounded-full flex items-center justify-center">
-                          <User className="w-4 h-4 text-white" />
+                      <div className="flex items-center space-x-3">
+                        <div className="w-10 h-10 bg-gradient-to-br from-primary-300 to-secondary-300 rounded-full flex items-center justify-center">
+                          <User className="w-5 h-5 text-white" />
                         </div>
                         <div>
-                          <p className="text-sm font-semibold text-gray-800">{post.author}</p>
-                          <p className="text-xs text-gray-500">{post.authorRole}</p>
+                          <p className="text-sm font-semibold text-neutral-800">{post.author}</p>
+                          <p className="text-xs text-neutral-500">{post.authorRole}</p>
                         </div>
                       </div>
-                      <button className="sweet-button interactive-button">
+                      <button className="sweet-button interactive-button px-6 py-3 rounded-2xl group-hover:scale-105 transform duration-200">
                         Read More
-                        <ArrowRight className="w-4 h-4 ml-2" />
+                        <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transform duration-200" />
                       </button>
                     </div>
                   </div>
@@ -215,31 +226,31 @@ export default function BlogPage() {
       )}
 
       {/* Search and Filter */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8">
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white/30 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Categories Sidebar */}
             <div className="lg:w-64">
-              <div className="bg-white rounded-3xl p-6 shadow-xl morph-card sticky top-8">
-                <h3 className="text-xl font-bold text-gray-800 mb-4">Categories</h3>
-                <div className="space-y-2">
+              <div className="bg-white rounded-3xl p-8 shadow-2xl morph-card sticky top-8">
+                <h3 className="text-2xl font-bold text-neutral-800 mb-6">Categories</h3>
+                <div className="space-y-3">
                   {categories.map((category) => {
                     const IconComponent = category.icon;
                     return (
                       <button
                         key={category.id}
                         onClick={() => setSelectedCategory(category.id)}
-                        className={`w-full flex items-center justify-between p-3 rounded-xl transition-all duration-200 ${
+                        className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all duration-200 ${
                           selectedCategory === category.id
-                            ? 'bg-pink-100 text-pink-800'
-                            : 'hover:bg-gray-100 text-gray-700'
+                            ? 'bg-primary-100 text-primary-800 shadow-lg'
+                            : 'hover:bg-cream-100 text-neutral-700 hover:shadow-md'
                         }`}
                       >
                         <div className="flex items-center">
-                          <IconComponent className="w-5 h-5 mr-3" />
-                          <span className="font-medium">{category.name}</span>
+                          <IconComponent className="w-6 h-6 mr-4" />
+                          <span className="font-medium text-lg">{category.name}</span>
                         </div>
-                        <span className="text-sm bg-gray-200 px-2 py-1 rounded-full">{category.count}</span>
+                        <span className="text-sm bg-neutral-200 px-3 py-1 rounded-full font-semibold">{category.count}</span>
                       </button>
                     );
                   })}
@@ -250,66 +261,66 @@ export default function BlogPage() {
             {/* Main Content */}
             <div className="flex-1">
               {/* Search Bar */}
-              <div className="bg-white rounded-3xl p-6 shadow-xl morph-card mb-8">
+              <div className="bg-white rounded-3xl p-8 shadow-2xl morph-card mb-8">
                 <div className="relative">
-                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                  <Search className="absolute left-6 top-1/2 transform -translate-y-1/2 text-neutral-400 w-6 h-6" />
                   <input
                     type="text"
                     placeholder="Search articles, tips, and stories..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="sweet-input w-full pl-12 pr-4 py-3 interactive-input"
+                    className="sweet-input w-full pl-16 pr-6 py-4 text-lg rounded-2xl interactive-input"
                   />
                 </div>
               </div>
 
               {/* Blog Posts Grid */}
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-children">
                 {filteredPosts.map((post, index) => (
-                  <div key={post.id} className="bg-white rounded-3xl overflow-hidden shadow-xl interactive-card animate-cardEntrance" style={{animationDelay: `${index * 100}ms`}}>
-                    <div className="h-48 bg-gradient-to-br from-pink-100 via-purple-100 to-indigo-100 flex items-center justify-center">
-                      <Candy className="w-12 h-12 text-pink-600 animate-pulseGlow" />
+                  <div key={post.id} className="bg-white rounded-3xl overflow-hidden shadow-2xl morph-card interactive-card animate-slide-up group" style={{animationDelay: `${index * 100}ms`}}>
+                    <div className="h-56 bg-gradient-to-br from-primary-100 via-cream-100 to-secondary-100 flex items-center justify-center">
+                      <Candy className="w-16 h-16 text-primary-600 animate-pulse" />
                     </div>
-                    <div className="p-6">
-                      <div className="flex items-center justify-between mb-3">
-                        <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs font-semibold">
+                    <div className="p-8">
+                      <div className="flex items-center justify-between mb-4">
+                        <span className="bg-secondary-100 text-secondary-800 px-3 py-1 rounded-full text-xs font-semibold">
                           {post.category}
                         </span>
-                        <div className="flex items-center space-x-3 text-sm text-gray-500">
+                        <div className="flex items-center space-x-3 text-sm text-neutral-500">
                           <span className="flex items-center">
-                            <Clock className="w-3 h-3 mr-1" />
+                            <Clock className="w-4 h-4 mr-2" />
                             {post.readTime}
                           </span>
                         </div>
                       </div>
-                      <h3 className="text-lg font-bold text-gray-800 mb-2 hover:text-pink-600 transition-colors cursor-pointer line-clamp-2">
+                      <h3 className="text-xl font-bold text-neutral-800 mb-3 hover:text-primary-600 transition-colors cursor-pointer line-clamp-2 group-hover:translate-x-1 transform duration-200">
                         {post.title}
                       </h3>
-                      <p className="text-gray-600 text-sm mb-4 line-clamp-3">{post.excerpt}</p>
+                      <p className="text-neutral-600 text-base mb-6 line-clamp-3 leading-relaxed">{post.excerpt}</p>
                       
-                      <div className="flex flex-wrap gap-1 mb-4">
+                      <div className="flex flex-wrap gap-2 mb-6">
                         {post.tags.slice(0, 3).map((tag) => (
-                          <span key={tag} className="bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs">
+                          <span key={tag} className="bg-cream-100 text-neutral-600 px-3 py-1 rounded-full text-sm">
                             #{tag}
                           </span>
                         ))}
                       </div>
 
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-2">
-                          <div className="w-6 h-6 bg-gradient-to-br from-pink-300 to-purple-300 rounded-full flex items-center justify-center">
-                            <User className="w-3 h-3 text-white" />
+                        <div className="flex items-center space-x-3">
+                          <div className="w-8 h-8 bg-gradient-to-br from-primary-300 to-secondary-300 rounded-full flex items-center justify-center">
+                            <User className="w-4 h-4 text-white" />
                           </div>
-                          <span className="text-sm font-medium text-gray-700">{post.author}</span>
+                          <span className="text-base font-medium text-neutral-700">{post.author}</span>
                         </div>
-                        <div className="flex items-center space-x-2 text-gray-500">
-                          <button className="flex items-center hover:text-pink-500 transition-colors">
-                            <Heart className="w-4 h-4" />
-                            <span className="text-xs ml-1">{post.likes}</span>
+                        <div className="flex items-center space-x-3 text-neutral-500">
+                          <button className="flex items-center hover:text-primary-500 transition-colors">
+                            <Heart className="w-5 h-5" />
+                            <span className="text-sm ml-2">{post.likes}</span>
                           </button>
-                          <button className="flex items-center hover:text-purple-500 transition-colors">
-                            <MessageCircle className="w-4 h-4" />
-                            <span className="text-xs ml-1">{post.comments}</span>
+                          <button className="flex items-center hover:text-secondary-500 transition-colors">
+                            <MessageCircle className="w-5 h-5" />
+                            <span className="text-sm ml-2">{post.comments}</span>
                           </button>
                         </div>
                       </div>
@@ -319,10 +330,10 @@ export default function BlogPage() {
               </div>
 
               {filteredPosts.length === 0 && (
-                <div className="text-center py-12 animate-fadeInUp">
-                  <Candy className="w-16 h-16 mx-auto text-gray-400 mb-4" />
-                  <h3 className="text-xl font-semibold text-gray-600 mb-2">No articles found</h3>
-                  <p className="text-gray-500">Try adjusting your search or filter criteria</p>
+                <div className="text-center py-16 animate-fade-in">
+                  <Candy className="w-20 h-20 mx-auto text-neutral-400 mb-6" />
+                  <h3 className="text-2xl font-semibold text-neutral-600 mb-3">No articles found</h3>
+                  <p className="text-neutral-500 text-lg">Try adjusting your search or filter criteria</p>
                 </div>
               )}
             </div>
@@ -331,43 +342,48 @@ export default function BlogPage() {
       </section>
 
       {/* Newsletter Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-4xl mx-auto text-center animate-fadeInUp">
-          <div className="animate-bounceIn mb-6">
-            <Mail className="w-16 h-16 mx-auto text-pink-500" />
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-primary-100 via-cream-100 to-secondary-100">
+        <div className="max-w-4xl mx-auto text-center animate-fade-in">
+          <div className="animate-bounce-in mb-8">
+            <Mail className="w-20 h-20 mx-auto text-primary-600" />
           </div>
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">Stay Sweetly Informed</h2>
-          <p className="text-lg text-gray-600 mb-8">
+          <h2 className="text-4xl font-bold text-neutral-800 mb-6">Stay Sweetly Informed</h2>
+          <p className="text-xl text-neutral-600 mb-10 max-w-2xl mx-auto leading-relaxed">
             Subscribe to our newsletter and get the latest sweet tips, trends, and exclusive recipes delivered to your inbox!
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+          <div className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
             <input
               type="email"
               placeholder="Enter your email address"
-              className="sweet-input flex-1 interactive-input"
+              className="sweet-input flex-1 interactive-input text-lg py-4 px-6 rounded-2xl"
             />
-            <button className="sweet-button interactive-button px-6">
+            <button className="sweet-button interactive-button px-8 py-4 text-lg rounded-2xl">
               Subscribe
-              <ArrowRight className="w-4 h-4 ml-2" />
+              <ArrowRight className="w-5 h-5 ml-3" />
             </button>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
-        <div className="max-w-4xl mx-auto text-center animate-fadeInUp">
-          <h2 className="text-4xl font-bold text-white mb-6">Share Your Sweet Stories</h2>
-          <p className="text-xl text-white/90 mb-8">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-3xl animate-float" />
+          <div className="absolute bottom-10 right-10 w-40 h-40 bg-white/10 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}} />
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-white/10 rounded-full blur-2xl animate-pulse" />
+        </div>
+        <div className="relative max-w-4xl mx-auto text-center animate-fade-in">
+          <h2 className="text-5xl font-bold text-white mb-8">Share Your Sweet Stories</h2>
+          <p className="text-2xl text-white/90 mb-12 max-w-2xl mx-auto leading-relaxed">
             Have a sweet tip or story to share? We'd love to hear from our community!
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="sweet-button interactive-button">
-              <Mail className="w-5 h-5 mr-2" />
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <button className="sweet-button interactive-button px-10 py-6 text-xl rounded-2xl group">
+              <Mail className="w-6 h-6 mr-3 group-hover:rotate-12 transform duration-200" />
               Submit Article
             </button>
-            <button className="cream-button interactive-button">
-              <Share2 className="w-5 h-5 mr-2" />
+            <button className="cream-button interactive-button px-10 py-6 text-xl rounded-2xl group">
+              <Share2 className="w-6 h-6 mr-3 group-hover:rotate-12 transform duration-200" />
               Share Your Story
             </button>
           </div>

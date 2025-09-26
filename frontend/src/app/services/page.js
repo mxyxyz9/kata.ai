@@ -155,107 +155,120 @@ export default function ServicesPage() {
 
   const colorClasses = {
     pink: {
-      bg: "from-pink-50 to-pink-100",
-      icon: "text-pink-500",
+      bg: "from-primary-50 to-cream-100",
+      icon: "text-primary-600",
       button: "sweet-button",
-      border: "border-pink-200",
-      gradient: "from-pink-500 to-pink-600"
+      border: "border-primary-200",
+      gradient: "from-primary-500 to-primary-600"
     },
     purple: {
-      bg: "from-purple-50 to-purple-100",
-      icon: "text-purple-500",
+      bg: "from-secondary-50 to-cream-100",
+      icon: "text-secondary-600",
       button: "sweet-button",
-      border: "border-purple-200",
-      gradient: "from-purple-500 to-purple-600"
+      border: "border-secondary-200",
+      gradient: "from-secondary-500 to-secondary-600"
     },
     indigo: {
-      bg: "from-indigo-50 to-indigo-100",
-      icon: "text-indigo-500",
+      bg: "from-accent-50 to-cream-100",
+      icon: "text-accent-600",
       button: "cream-button",
-      border: "border-indigo-200",
-      gradient: "from-indigo-500 to-indigo-600"
+      border: "border-accent-200",
+      gradient: "from-accent-500 to-accent-600"
     },
     green: {
-      bg: "from-green-50 to-green-100",
-      icon: "text-green-500",
+      bg: "from-neutral-50 to-cream-100",
+      icon: "text-neutral-600",
       button: "sweet-button",
-      border: "border-green-200",
-      gradient: "from-green-500 to-green-600"
+      border: "border-neutral-200",
+      gradient: "from-neutral-500 to-neutral-600"
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-cream-50 to-secondary-50">
       {/* Hero Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-pink-100 via-purple-100 to-indigo-100 opacity-50"></div>
+      <section className="relative py-32 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-primary-50 via-cream-50 to-secondary-50">
         <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-20 h-20 bg-pink-200 rounded-full opacity-30 animate-float"></div>
-          <div className="absolute top-40 right-20 w-16 h-16 bg-purple-200 rounded-full opacity-30 animate-float" style={{animationDelay: '1s'}}></div>
-          <div className="absolute bottom-20 left-1/4 w-12 h-12 bg-indigo-200 rounded-full opacity-30 animate-float" style={{animationDelay: '2s'}}></div>
+          <div className="absolute top-20 left-20 w-32 h-32 bg-primary-200/30 rounded-full blur-2xl animate-float"></div>
+          <div className="absolute top-40 right-32 w-24 h-24 bg-secondary-200/30 rounded-full blur-2xl animate-float" style={{animationDelay: '1s'}}></div>
+          <div className="absolute bottom-32 left-1/3 w-20 h-20 bg-accent-200/30 rounded-full blur-2xl animate-float" style={{animationDelay: '2s'}}></div>
+          <div className="absolute bottom-20 right-1/4 w-28 h-28 bg-neutral-200/30 rounded-full blur-2xl animate-float" style={{animationDelay: '3s'}}></div>
         </div>
         
-        <div className={`relative max-w-7xl mx-auto text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="animate-bounceIn mb-6">
-            <Sparkles className="w-16 h-16 mx-auto text-pink-500" />
+        <div className={`relative max-w-7xl mx-auto text-center ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
+          <div className="animate-bounce-in mb-8">
+            <Sparkles className="w-24 h-24 mx-auto text-primary-500" />
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold text-gray-800 mb-6 animate-fadeInUp">
-            Our Sweet Services
+          <h1 className="text-6xl md:text-8xl font-bold mb-8 animate-slide-up">
+            <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
+              Our Sweet Services
+            </span>
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto animate-fadeInUp" style={{animationDelay: '200ms'}}>
-            From delivery to custom creations, we offer a range of services to make your sweet dreams come true.
+          <p className="text-2xl text-neutral-600 max-w-4xl mx-auto animate-slide-up" style={{animationDelay: '200ms'}}>
+            From artisan delivery to custom creations, we offer a range of services to make your sweet dreams come true.
           </p>
         </div>
       </section>
 
       {/* Services Grid */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white/50 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-8 stagger-children">
+          <div className="text-center mb-16 animate-fade-in">
+            <h2 className="text-5xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
+                Premium Services
+              </span>
+            </h2>
+            <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
+              Discover our artisan-crafted services designed to bring sweetness to every occasion
+            </p>
+          </div>
+          
+          <div className="grid lg:grid-cols-2 gap-12">
             {services.map((service, index) => {
               const colors = colorClasses[service.color];
               return (
-                <div key={service.id} className={`bg-gradient-to-br ${colors.bg} rounded-3xl p-8 interactive-card animate-cardEntrance`} style={{animationDelay: `${index * 150}ms`}}>
-                  <div className="flex items-center mb-6">
-                    <div className="animate-bounceIn">
-                      <service.icon className={`w-12 h-12 ${colors.icon} mr-4`} />
+                <div key={service.id} className={`morph-card bg-gradient-to-br ${colors.bg} p-10 group hover:scale-105 hover:shadow-3xl transition-all duration-500 animate-slide-up`} style={{animationDelay: `${index * 200}ms`}}>
+                  <div className="flex items-center mb-8">
+                    <div className="animate-bounce-in mr-6">
+                      <service.icon className={`w-16 h-16 ${colors.icon} group-hover:scale-110 transition-transform duration-300`} />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-gray-800">{service.title}</h3>
-                      <p className="text-gray-600">{service.description}</p>
+                      <h3 className="text-3xl font-bold text-neutral-800 mb-3">{service.title}</h3>
+                      <p className="text-lg text-neutral-600 leading-relaxed">{service.description}</p>
                     </div>
                   </div>
                   
-                  <div className="mb-6">
-                    <h4 className="font-semibold text-gray-800 mb-3">Key Features:</h4>
-                    <div className="grid sm:grid-cols-2 gap-2">
+                  <div className="mb-8">
+                    <h4 className="text-xl font-semibold text-neutral-800 mb-4">Premium Features:</h4>
+                    <div className="grid sm:grid-cols-2 gap-3">
                       {service.features.map((feature, idx) => (
-                        <div key={idx} className="flex items-center text-sm text-gray-600">
-                          <Check className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
+                        <div key={idx} className="flex items-center text-base text-neutral-600">
+                          <Check className="w-5 h-5 text-primary-500 mr-3 flex-shrink-0" />
                           {feature}
                         </div>
                       ))}
                     </div>
                   </div>
                   
-                  <div className="mb-6">
-                    <h4 className="font-semibold text-gray-800 mb-3">Pricing Options:</h4>
-                    <div className="space-y-2">
+                  <div className="mb-8">
+                    <h4 className="text-xl font-semibold text-neutral-800 mb-4">Pricing Options:</h4>
+                    <div className="space-y-3">
                       {service.pricing.map((price, idx) => (
-                        <div key={idx} className="flex justify-between items-center p-3 bg-white/50 rounded-lg">
+                        <div key={idx} className="flex justify-between items-center p-4 bg-white/70 rounded-2xl hover:bg-white transition-colors duration-300">
                           <div>
-                            <span className="font-medium text-gray-800">{price.name}</span>
-                            <p className="text-sm text-gray-600">{price.description}</p>
+                            <span className="font-semibold text-neutral-800 text-lg">{price.name}</span>
+                            <p className="text-neutral-600">{price.description}</p>
                           </div>
-                          <span className={`font-bold ${colors.icon}`}>{price.price}</span>
+                          <span className={`font-bold text-xl ${colors.icon}`}>{price.price}</span>
                         </div>
                       ))}
                     </div>
                   </div>
                   
-                  <button className={`${colors.button} w-full interactive-button`}>
+                  <button className={`${colors.button} w-full text-lg py-4 px-8 rounded-2xl group`}>
                     {service.cta}
-                    <ArrowRight className="w-5 h-5 ml-2" />
+                    <ArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-2 transition-transform duration-300" />
                   </button>
                 </div>
               );
@@ -265,28 +278,32 @@ export default function ServicesPage() {
       </section>
 
       {/* Process Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-cream-50 to-primary-50">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16 animate-fadeInUp">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">How It Works</h2>
-            <p className="text-xl text-gray-600">
-              Our simple process to bring sweetness to your door
+          <div className="text-center mb-20 animate-fade-in">
+            <h2 className="text-5xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
+                Our Artisan Process
+              </span>
+            </h2>
+            <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
+              Our time-honored process to bring handcrafted sweetness to your door
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 stagger-children">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
             {processSteps.map((step, index) => {
               const colors = colorClasses[step.color];
               return (
-                <div key={step.step} className="text-center interactive-card animate-cardEntrance" style={{animationDelay: `${index * 150}ms`}}>
-                  <div className={`w-20 h-20 ${colors.icon} mx-auto mb-6 bg-gradient-to-br ${colors.bg} rounded-2xl flex items-center justify-center animate-bounceIn`}>
-                    <step.icon className="w-10 h-10" />
+                <div key={step.step} className="text-center group hover:scale-105 transition-all duration-300 animate-slide-up" style={{animationDelay: `${index * 200}ms`}}>
+                  <div className={`w-24 h-24 ${colors.icon} mx-auto mb-8 bg-gradient-to-br ${colors.bg} rounded-3xl flex items-center justify-center animate-bounce-in group-hover:scale-110 transition-transform duration-300`}>
+                    <step.icon className="w-12 h-12" />
                   </div>
-                  <div className={`w-10 h-10 ${colors.icon} mx-auto mb-4 bg-gradient-to-br ${colors.gradient} rounded-full flex items-center justify-center text-white font-bold`}>
+                  <div className={`w-12 h-12 ${colors.icon} mx-auto mb-6 bg-gradient-to-br ${colors.gradient} rounded-full flex items-center justify-center text-white font-bold text-lg animate-pulse`}>
                     {step.step}
                   </div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-3">{step.title}</h3>
-                  <p className="text-gray-600">{step.description}</p>
+                  <h3 className="text-2xl font-bold text-neutral-800 mb-4">{step.title}</h3>
+                  <p className="text-neutral-600 leading-relaxed">{step.description}</p>
                 </div>
               );
             })}
@@ -295,28 +312,32 @@ export default function ServicesPage() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white/50 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16 animate-fadeInUp">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">What Our Customers Say</h2>
-            <p className="text-xl text-gray-600">
-              Don't just take our word for it - hear from our satisfied customers
+          <div className="text-center mb-20 animate-fade-in">
+            <h2 className="text-5xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
+                Customer Love
+              </span>
+            </h2>
+            <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
+              Don't just take our word for it - hear from our delighted customers
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-children">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white rounded-3xl p-8 shadow-xl interactive-card animate-cardEntrance" style={{animationDelay: `${index * 150}ms`}}>
-                <div className="flex items-center mb-4">
+              <div key={index} className="morph-card bg-white p-10 group hover:scale-105 hover:shadow-3xl transition-all duration-500 animate-slide-up" style={{animationDelay: `${index * 200}ms`}}>
+                <div className="flex items-center mb-6">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                    <Star key={i} className="w-6 h-6 text-yellow-400 fill-current" />
                   ))}
                 </div>
-                <p className="text-gray-600 mb-6 italic">"{testimonial.comment}"</p>
-                <div className="border-t pt-4">
-                  <p className="font-semibold text-gray-800">{testimonial.name}</p>
-                  <p className="text-sm text-purple-600">{testimonial.event}</p>
-                  <p className="text-xs text-gray-500">{testimonial.service}</p>
+                <p className="text-neutral-600 mb-8 italic text-lg leading-relaxed">"{testimonial.comment}"</p>
+                <div className="border-t border-neutral-200 pt-6">
+                  <p className="font-bold text-neutral-800 text-lg">{testimonial.name}</p>
+                  <p className="text-secondary-600 font-medium">{testimonial.event}</p>
+                  <p className="text-sm text-neutral-500 mt-2">{testimonial.service}</p>
                 </div>
               </div>
             ))}
@@ -325,21 +346,50 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
-        <div className="max-w-4xl mx-auto text-center animate-fadeInUp">
-          <h2 className="text-4xl font-bold text-white mb-6">Ready to Experience Our Services?</h2>
-          <p className="text-xl text-white/90 mb-8">
-            Contact us today to discuss how we can make your next event or celebration extra special!
+      <section className="py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute top-10 left-10 w-40 h-40 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-10 right-10 w-32 h-32 bg-white/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+        </div>
+        
+        <div className="relative max-w-5xl mx-auto text-center animate-fade-in">
+          <h2 className="text-6xl font-bold text-white mb-8">Ready to Experience Our Artisan Services?</h2>
+          <p className="text-2xl text-white/90 mb-12 max-w-3xl mx-auto">
+            Contact us today to discuss how we can make your next event or celebration extra special with our handcrafted sweets!
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="sweet-button interactive-button">
-              <Phone className="w-5 h-5 mr-2" />
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <button className="cream-button text-lg py-4 px-10 rounded-2xl group">
+              <Phone className="w-6 h-6 mr-3 group-hover:rotate-12 transition-transform duration-300" />
               Call Now
             </button>
-            <button className="cream-button interactive-button">
-              <Mail className="w-5 h-5 mr-2" />
+            <button className="sweet-button text-lg py-4 px-10 rounded-2xl group">
+              <Mail className="w-6 h-6 mr-3 group-hover:rotate-12 transition-transform duration-300" />
               Send Message
             </button>
+          </div>
+          
+          <div className="mt-16 grid md:grid-cols-3 gap-8 text-white/80">
+            <div className="flex flex-col items-center">
+              <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-4">
+                <Clock className="w-8 h-8" />
+              </div>
+              <p className="font-semibold">24/7 Support</p>
+              <p className="text-sm opacity-80">Always here to help</p>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-4">
+                <Users className="w-8 h-8" />
+              </div>
+              <p className="font-semibold">Expert Team</p>
+              <p className="text-sm opacity-80">Skilled artisans ready</p>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-4">
+                <Heart className="w-8 h-8" />
+              </div>
+              <p className="font-semibold">Satisfaction Guaranteed</p>
+              <p className="text-sm opacity-80">Love it or we'll make it right</p>
+            </div>
           </div>
         </div>
       </section>

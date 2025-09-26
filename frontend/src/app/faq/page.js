@@ -12,6 +12,47 @@ export default function FAQPage() {
     setIsVisible(true);
   }, []);
 
+  // Add floating background elements styles
+  useEffect(() => {
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes float {
+        0% { transform: translateY(0px) translateX(0px); }
+        50% { transform: translateY(-20px) translateX(10px); }
+        100% { transform: translateY(0px) translateX(0px); }
+      }
+      @keyframes float-delayed {
+        0% { transform: translateY(0px) translateX(0px); }
+        50% { transform: translateY(15px) translateX(-15px); }
+        100% { transform: translateY(0px) translateX(0px); }
+      }
+      @keyframes float-slow {
+        0% { transform: translateY(0px) translateX(0px); }
+        50% { transform: translateY(-25px) translateX(5px); }
+        100% { transform: translateY(0px) translateX(0px); }
+      }
+      @keyframes float-delayed-slow {
+        0% { transform: translateY(0px) translateX(0px); }
+        50% { transform: translateY(20px) translateX(-10px); }
+        100% { transform: translateY(0px) translateX(0px); }
+      }
+      .animate-float {
+        animation: float 6s ease-in-out infinite;
+      }
+      .animate-float-delayed {
+        animation: float-delayed 8s ease-in-out infinite;
+      }
+      .animate-float-slow {
+        animation: float-slow 10s ease-in-out infinite;
+      }
+      .animate-float-delayed-slow {
+        animation: float-delayed-slow 12s ease-in-out infinite;
+      }
+    `;
+    document.head.appendChild(style);
+    return () => document.head.removeChild(style);
+  }, []);
+
   const toggleItem = (id) => {
     setOpenItems(prev => 
       prev.includes(id) 
@@ -172,41 +213,51 @@ export default function FAQPage() {
   })).filter(category => category.questions.length > 0);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-cream-50 to-secondary-50 relative overflow-hidden">
+      {/* Floating Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-primary-200/40 to-secondary-200/40 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute top-40 right-20 w-96 h-96 bg-gradient-to-br from-cream-200/40 to-accent-200/40 rounded-full blur-3xl animate-float-delayed"></div>
+        <div className="absolute bottom-40 left-1/4 w-80 h-80 bg-gradient-to-br from-secondary-200/30 to-primary-200/30 rounded-full blur-3xl animate-float-slow"></div>
+        <div className="absolute bottom-20 right-1/3 w-64 h-64 bg-gradient-to-br from-accent-200/30 to-cream-200/30 rounded-full blur-3xl animate-float-delayed-slow"></div>
+      </div>
       {/* Hero Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-pink-100 via-purple-100 to-indigo-100 opacity-50"></div>
+      <section className="relative py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-100 via-cream-100 to-secondary-100 opacity-60"></div>
         <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-20 h-20 bg-pink-200 rounded-full opacity-30 animate-float"></div>
-          <div className="absolute top-40 right-20 w-16 h-16 bg-purple-200 rounded-full opacity-30 animate-float" style={{animationDelay: '1s'}}></div>
-          <div className="absolute bottom-20 left-1/4 w-12 h-12 bg-indigo-200 rounded-full opacity-30 animate-float" style={{animationDelay: '2s'}}></div>
+          <div className="absolute top-10 left-10 w-32 h-32 bg-primary-200/30 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute top-40 right-20 w-24 h-24 bg-secondary-200/30 rounded-full blur-3xl animate-float" style={{animationDelay: '1s'}}></div>
+          <div className="absolute bottom-20 left-1/4 w-40 h-40 bg-accent-200/30 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}}></div>
+          <div className="absolute bottom-40 right-1/3 w-28 h-28 bg-primary-200/30 rounded-full blur-2xl animate-float" style={{animationDelay: '3s'}}></div>
         </div>
         
         <div className={`relative max-w-7xl mx-auto text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="animate-bounceIn mb-6">
-            <HelpCircle className="w-16 h-16 mx-auto text-pink-500" />
+          <div className="animate-bounce-in mb-8">
+            <div className="w-24 h-24 bg-gradient-to-br from-primary-400 to-secondary-500 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl">
+              <HelpCircle className="w-12 h-12 text-white" />
+            </div>
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold text-gray-800 mb-6 animate-fadeInUp">
+          <h1 className="text-6xl md:text-7xl font-bold text-neutral-900 mb-6 animate-slide-up bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
             Sweet Help Center
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto animate-fadeInUp" style={{animationDelay: '200ms'}}>
-            Find answers to all your sweet questions and get the help you need
+          <p className="text-2xl text-neutral-600 max-w-4xl mx-auto animate-slide-up font-light leading-relaxed" style={{animationDelay: '200ms'}}>
+            Find answers to all your sweet questions and get the help you need with our comprehensive FAQ
           </p>
         </div>
       </section>
 
       {/* Search Bar */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8">
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-3xl p-6 shadow-xl morph-card animate-fadeInUp">
+          <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-2xl morph-card animate-slide-up">
             <div className="relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <Search className="absolute left-6 top-1/2 transform -translate-y-1/2 text-neutral-400 w-6 h-6" />
               <input
                 type="text"
                 placeholder="Search for answers... (e.g., shipping, ingredients, custom orders)"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="sweet-input w-full pl-12 pr-4 py-4 interactive-input text-lg"
+                className="w-full pl-16 pr-6 py-5 text-lg rounded-2xl border-2 border-neutral-200 focus:border-primary-400 focus:ring-4 focus:ring-primary-100 transition-all duration-300 bg-white/50 backdrop-blur-sm"
               />
             </div>
           </div>
@@ -214,68 +265,76 @@ export default function FAQPage() {
       </section>
 
       {/* Quick Links */}
-      <section className="py-8 px-4 sm:px-6 lg:px-8">
+      <section className="py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 stagger-children">
-            <div className="bg-white rounded-2xl p-6 text-center shadow-lg morph-card interactive-card animate-cardEntrance">
-              <Phone className="w-8 h-8 mx-auto text-pink-500 mb-3" />
-              <h3 className="font-semibold text-gray-800">Call Us</h3>
-              <p className="text-sm text-gray-600">(555) 123-SWEET</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 stagger-children">
+            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 text-center shadow-2xl morph-card group hover:scale-105 transition-all duration-500 animate-slide-up">
+              <div className="w-16 h-16 bg-gradient-to-br from-primary-400 to-primary-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                <Phone className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="font-bold text-neutral-800 text-lg mb-2">Call Us</h3>
+              <p className="text-neutral-600 font-medium">(555) 123-SWEET</p>
             </div>
-            <div className="bg-white rounded-2xl p-6 text-center shadow-lg morph-card interactive-card animate-cardEntrance" style={{animationDelay: '100ms'}}>
-              <Mail className="w-8 h-8 mx-auto text-purple-500 mb-3" />
-              <h3 className="font-semibold text-gray-800">Email Us</h3>
-              <p className="text-sm text-gray-600">support@sweetdelights.com</p>
+            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 text-center shadow-2xl morph-card group hover:scale-105 transition-all duration-500 animate-slide-up" style={{animationDelay: '100ms'}}>
+              <div className="w-16 h-16 bg-gradient-to-br from-secondary-400 to-secondary-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                <Mail className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="font-bold text-neutral-800 text-lg mb-2">Email Us</h3>
+              <p className="text-neutral-600 font-medium">support@sweetdelights.com</p>
             </div>
-            <div className="bg-white rounded-2xl p-6 text-center shadow-lg morph-card interactive-card animate-cardEntrance" style={{animationDelay: '200ms'}}>
-              <Clock className="w-8 h-8 mx-auto text-green-500 mb-3" />
-              <h3 className="font-semibold text-gray-800">Hours</h3>
-              <p className="text-sm text-gray-600">Mon-Sat 9AM-6PM</p>
+            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 text-center shadow-2xl morph-card group hover:scale-105 transition-all duration-500 animate-slide-up" style={{animationDelay: '200ms'}}>
+              <div className="w-16 h-16 bg-gradient-to-br from-accent-400 to-accent-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                <Clock className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="font-bold text-neutral-800 text-lg mb-2">Hours</h3>
+              <p className="text-neutral-600 font-medium">Mon-Sat 9AM-6PM</p>
             </div>
-            <div className="bg-white rounded-2xl p-6 text-center shadow-lg morph-card interactive-card animate-cardEntrance" style={{animationDelay: '300ms'}}>
-              <MapPin className="w-8 h-8 mx-auto text-orange-500 mb-3" />
-              <h3 className="font-semibold text-gray-800">Visit Us</h3>
-              <p className="text-sm text-gray-600">123 Sweet Street</p>
+            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 text-center shadow-2xl morph-card group hover:scale-105 transition-all duration-500 animate-slide-up" style={{animationDelay: '300ms'}}>
+              <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                <MapPin className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="font-bold text-neutral-800 text-lg mb-2">Visit Us</h3>
+              <p className="text-neutral-600 font-medium">123 Sweet Street</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* FAQ Categories */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
+      <section className="py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {filteredCategories.map((category, categoryIndex) => (
-            <div key={category.id} className="mb-16 animate-fadeInUp" style={{animationDelay: `${categoryIndex * 200}ms`}}>
-              <div className="text-center mb-8">
-                <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r ${category.color} mb-4`}>
-                  <category.icon className="w-8 h-8 text-white" />
+            <div key={category.id} className="mb-20 animate-slide-up" style={{animationDelay: `${categoryIndex * 200}ms`}}>
+              <div className="text-center mb-12">
+                <div className={`inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-gradient-to-br ${category.color} mb-6 shadow-2xl group-hover:scale-110 transition-transform duration-300`}>
+                  <category.icon className="w-10 h-10 text-white" />
                 </div>
-                <h2 className="text-3xl font-bold text-gray-800">{category.title}</h2>
+                <h2 className="text-4xl font-bold text-neutral-900 bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">{category.title}</h2>
               </div>
               
-              <div className="space-y-4 stagger-children">
+              <div className="space-y-6 stagger-children">
                 {category.questions.map((item, index) => (
-                  <div key={item.id} className="bg-white rounded-2xl shadow-lg morph-card interactive-card animate-cardEntrance" style={{animationDelay: `${index * 100}ms`}}>
+                  <div key={item.id} className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl morph-card group animate-slide-up" style={{animationDelay: `${index * 100}ms`}}>
                     <button
                       onClick={() => toggleItem(item.id)}
-                      className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 rounded-2xl transition-colors duration-200"
+                      className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-white/50 rounded-3xl transition-all duration-300 group"
                     >
-                      <h3 className="text-lg font-semibold text-gray-800 pr-4">
+                      <h3 className="text-xl font-semibold text-neutral-800 pr-6 group-hover:text-primary-600 transition-colors duration-300">
                         {item.question}
                       </h3>
-                      <div className="flex-shrink-0">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-primary-100 to-secondary-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                         {openItems.includes(item.id) ? (
-                          <Minus className="w-5 h-5 text-pink-500" />
+                          <Minus className="w-5 h-5 text-primary-600" />
                         ) : (
-                          <Plus className="w-5 h-5 text-pink-500" />
+                          <Plus className="w-5 h-5 text-secondary-600" />
                         )}
                       </div>
                     </button>
                     
-                    <div className={`overflow-hidden transition-all duration-300 ${openItems.includes(item.id) ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
-                      <div className="px-6 pb-6">
-                        <div className="border-t border-gray-100 pt-4">
-                          <p className="text-gray-600 leading-relaxed">
+                    <div className={`overflow-hidden transition-all duration-500 ease-in-out ${openItems.includes(item.id) ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+                      <div className="px-8 pb-8">
+                        <div className="border-t border-neutral-100 pt-6">
+                          <p className="text-neutral-600 leading-relaxed text-lg font-light">
                             {item.answer}
                           </p>
                         </div>
@@ -290,42 +349,50 @@ export default function FAQPage() {
       </section>
 
       {/* Still Need Help */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-4xl mx-auto text-center animate-fadeInUp">
-          <div className="animate-bounceIn mb-6">
-            <Users className="w-16 h-16 mx-auto text-pink-500" />
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary-100 via-cream-100 to-secondary-100">
+        <div className="max-w-6xl mx-auto text-center animate-slide-up">
+          <div className="animate-bounce-in mb-8">
+            <div className="w-20 h-20 bg-gradient-to-br from-primary-400 to-secondary-500 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl">
+              <Users className="w-10 h-10 text-white" />
+            </div>
           </div>
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">Still Need Help?</h2>
-          <p className="text-lg text-gray-600 mb-8">
-            Can\'t find what you\'re looking for? Our sweet team is here to help you!
+          <h2 className="text-5xl font-bold text-neutral-900 mb-6 bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">Still Need Help?</h2>
+          <p className="text-xl text-neutral-600 mb-12 max-w-3xl mx-auto font-light leading-relaxed">
+            Can't find what you're looking for? Our sweet team is here to help you with any questions or concerns!
           </p>
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
-            <div className="bg-pink-50 rounded-2xl p-6 morph-card">
-              <Phone className="w-8 h-8 text-pink-500 mx-auto mb-3" />
-              <h3 className="font-semibold text-gray-800 mb-2">Call Us</h3>
-              <p className="text-pink-600 font-medium">(555) 123-SWEET</p>
-              <p className="text-sm text-gray-600">Mon-Sat 9AM-6PM EST</p>
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
+            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 morph-card shadow-2xl group hover:scale-105 transition-all duration-500">
+              <div className="w-16 h-16 bg-gradient-to-br from-primary-400 to-primary-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                <Phone className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="font-bold text-neutral-800 text-xl mb-3">Call Us</h3>
+              <p className="text-primary-600 font-bold text-lg mb-2">(555) 123-SWEET</p>
+              <p className="text-neutral-500 font-medium">Mon-Sat 9AM-6PM EST</p>
             </div>
-            <div className="bg-purple-50 rounded-2xl p-6 morph-card">
-              <Mail className="w-8 h-8 text-purple-500 mx-auto mb-3" />
-              <h3 className="font-semibold text-gray-800 mb-2">Email Us</h3>
-              <p className="text-purple-600 font-medium">support@sweetdelights.com</p>
-              <p className="text-sm text-gray-600">Response within 24 hours</p>
+            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 morph-card shadow-2xl group hover:scale-105 transition-all duration-500">
+              <div className="w-16 h-16 bg-gradient-to-br from-secondary-400 to-secondary-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                <Mail className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="font-bold text-neutral-800 text-xl mb-3">Email Us</h3>
+              <p className="text-secondary-600 font-bold text-lg mb-2">support@sweetdelights.com</p>
+              <p className="text-neutral-500 font-medium">Response within 24 hours</p>
             </div>
-            <div className="bg-green-50 rounded-2xl p-6 morph-card">
-              <MapPin className="w-8 h-8 text-green-500 mx-auto mb-3" />
-              <h3 className="font-semibold text-gray-800 mb-2">Visit Us</h3>
-              <p className="text-green-600 font-medium">123 Sweet Street</p>
-              <p className="text-sm text-gray-600">Sweet Town, ST 12345</p>
+            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 morph-card shadow-2xl group hover:scale-105 transition-all duration-500">
+              <div className="w-16 h-16 bg-gradient-to-br from-accent-400 to-accent-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                <MapPin className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="font-bold text-neutral-800 text-xl mb-3">Visit Us</h3>
+              <p className="text-accent-600 font-bold text-lg mb-2">123 Sweet Street</p>
+              <p className="text-neutral-500 font-medium">Sweet Town, ST 12345</p>
             </div>
           </div>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="sweet-button interactive-button">
-              <Mail className="w-5 h-5 mr-2" />
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <button className="sweet-button interactive-button text-lg px-8 py-4 rounded-2xl group">
+              <Mail className="w-6 h-6 mr-3 group-hover:rotate-12 transition-transform" />
               Send Message
             </button>
-            <button className="cream-button interactive-button">
-              <Sparkles className="w-5 h-5 mr-2" />
+            <button className="cream-button interactive-button text-lg px-8 py-4 rounded-2xl group">
+              <Sparkles className="w-6 h-6 mr-3 group-hover:rotate-12 transition-transform" />
               Live Chat
             </button>
           </div>
@@ -333,26 +400,31 @@ export default function FAQPage() {
       </section>
 
       {/* Newsletter */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
-        <div className="max-w-4xl mx-auto text-center animate-fadeInUp">
-          <div className="animate-bounceIn mb-6">
-            <Mail className="w-16 h-16 mx-auto text-white" />
+      <section className="py-24 bg-gradient-to-br from-primary-200 via-cream-200 to-secondary-200">
+        <div className="max-w-5xl mx-auto text-center px-4 sm:px-6 lg:px-8 animate-slide-up">
+          <div className="mb-8">
+            <div className="w-20 h-20 bg-gradient-to-br from-primary-500 to-secondary-600 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl">
+              <Mail className="w-10 h-10 text-white" />
+            </div>
           </div>
-          <h2 className="text-3xl font-bold text-white mb-4">Get Sweet Updates</h2>
-          <p className="text-xl text-white/90 mb-8">
-            Subscribe to our newsletter for sweet tips, exclusive offers, and new product announcements!
+          <h2 className="text-5xl font-bold text-neutral-900 mb-6 bg-gradient-to-r from-primary-700 to-secondary-700 bg-clip-text text-transparent">Stay Sweet with Our Newsletter</h2>
+          <p className="text-xl text-neutral-700 mb-10 max-w-3xl mx-auto font-light leading-relaxed">
+            Get exclusive offers, new product updates, and sweet surprises delivered to your inbox! Join our community of sweet lovers.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+          <form className="max-w-lg mx-auto flex gap-4 mb-6">
             <input
               type="email"
               placeholder="Enter your email address"
-              className="sweet-input flex-1 interactive-input"
+              className="flex-1 px-6 py-4 rounded-2xl border-2 border-neutral-300 focus:outline-none focus:border-primary-400 focus:ring-4 focus:ring-primary-100 transition-all duration-300 bg-white/80 backdrop-blur-sm text-lg"
             />
-            <button className="cream-button interactive-button px-6">
+            <button className="purple-button interactive-button text-lg px-8 py-4 rounded-2xl group">
+              <Mail className="w-6 h-6 mr-3 group-hover:rotate-12 transition-transform" />
               Subscribe
-              <Sparkles className="w-4 h-4 ml-2" />
             </button>
-          </div>
+          </form>
+          <p className="text-base text-neutral-600 font-medium">
+            We respect your privacy. Unsubscribe at any time. No spam, just sweet treats!
+          </p>
         </div>
       </section>
     </div>
