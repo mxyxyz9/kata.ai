@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Package, TrendingUp, AlertCircle, Heart, Star, Filter, Search, Grid, List, SortAsc, Plus, Eye, Edit, Trash2, ShoppingCart } from 'lucide-react';
+import { Package, TrendingUp, AlertCircle, Heart, Star, Filter, Search, Grid, List, SortAsc, Plus, Eye, Edit, Trash2, ShoppingCart, AlertTriangle } from 'lucide-react';
 import APIClient from '../lib/api';
 
 const api = APIClient();
@@ -108,7 +108,7 @@ export default function SweetList() {
           </div>
           <h3 className="text-2xl font-semibold text-neutral-800 mb-2 animate-fadeInUp animate-delay-200">Oops! Something went wrong</h3>
           <p className="text-neutral-600 mb-6 animate-fadeInUp animate-delay-300">{error}</p>
-          <button onClick={fetchSweets} className="sweet-button interactive-button">
+          <button onClick={fetchSweets} className="btn btn-primary">
             <RefreshCw className="w-4 h-4 mr-2" />
             Try Again
           </button>
@@ -169,7 +169,7 @@ export default function SweetList() {
                 <option value="category">Sort by Category</option>
               </select>
               
-              <div className="flex bg-neutral-100 rounded-lg p-1 interactive-card">
+              <div className="flex bg-neutral-100 rounded-lg p-1">
                 <button
                   onClick={() => setViewMode('grid')}
                   className={`p-2 rounded-md transition-all duration-200 ${viewMode === 'grid' ? 'bg-white shadow-sm text-primary-600 scale-105' : 'text-neutral-600 hover:text-neutral-800 hover:scale-105'}`}
@@ -208,7 +208,7 @@ export default function SweetList() {
               {/* Favorite Button */}
               <button
                 onClick={() => toggleFavorite(sweet.id)}
-                className="absolute top-3 right-3 w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-all shadow-sm interactive-button"
+                className="absolute top-3 right-3 w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-all shadow-sm"
               >
                 <Heart 
                   className={`w-4 h-4 transition-colors ${
@@ -251,10 +251,10 @@ export default function SweetList() {
                 </div>
                 
                 <div className="flex gap-2">
-                  <button className="cream-button p-3 group-hover:bg-primary-100 group-hover:text-primary-600 transition-colors interactive-button">
+                  <button className="btn btn-secondary p-3 group-hover:bg-primary-100 group-hover:text-primary-600 transition-colors">
                     <Eye className="w-4 h-4" />
                   </button>
-                  <button className="sweet-button px-4 py-3 flex items-center gap-2 interactive-button">
+                  <button className="btn btn-primary px-4 py-3 flex items-center gap-2">
                     <ShoppingCart className="w-4 h-4" />
                     <span className="text-sm font-medium">Add</span>
                   </button>
@@ -279,7 +279,7 @@ export default function SweetList() {
               setSelectedCategory('');
               setSortBy('name');
             }}
-            className="sweet-button interactive-button animate-fadeInUp animate-delay-400"
+            className="btn btn-primary animate-fadeInUp animate-delay-400"
           >
             Clear Filters
           </button>

@@ -7,7 +7,6 @@ import { Store, Home, Package, BarChart3, Users, Heart, ShoppingCart, User, Sear
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeSection, setActiveSection] = useState('home');
 
   const navItems = [
     { href: '/', label: 'Home', icon: Home },
@@ -23,143 +22,132 @@ export default function Navigation() {
   return (
     <>
       {/* Top Announcement Bar */}
-      <div className="bg-gradient-to-r from-primary-500 to-primary-600 text-white py-2 px-4 animate-slide-down">
-        <div className="max-w-7xl mx-auto flex items-center justify-between text-sm">
+      <div className="bg-secondary text-primary py-2 px-4">
+        <div className="max-w-7xl mx-auto flex items-center justify-center text-sm">
           <p className="flex items-center space-x-2">
-            <Heart className="w-4 h-4 animate-pulse float" />
-            <span className="font-medium">🍬 Free shipping on orders over $50! 🍭</span>
+            <Heart className="w-4 h-4" />
+            <span className="font-medium">Free shipping on orders over $50!</span>
           </p>
-          <div className="flex items-center space-x-4">
-            <span className="flex items-center space-x-1">
-              <Phone className="w-4 h-4" />
-              <span>+1 (555) 123-4567</span>
-            </span>
-            <span className="flex items-center space-x-1">
-              <Mail className="w-4 h-4" />
-              <span>hello@sweetshop.com</span>
-            </span>
-          </div>
         </div>
       </div>
 
       {/* Main Navigation */}
-      <nav className="sticky top-0 z-50 bg-white/98 backdrop-blur-xl border-b border-neutral-100 shadow-sm animate-fade-in">
+      <nav className="sticky top-0 z-50 bg-primary shadow-md m-4 rounded-full">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Link href="/" className="flex items-center space-x-4 group">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary-400 via-primary-500 to-primary-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
-                <Store className="w-6 h-6 text-white animate-bounce-in" />
+            <Link href="/" className="flex items-center space-x-4">
+              <div className="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center">
+                <Store className="w-6 h-6 text-primary" />
               </div>
-              <div className="animate-fade-in">
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent font-playfair">
+              <div>
+                <h1 className="text-2xl font-bold text-neutral-800">
                   Sweet Shop
                 </h1>
-                <p className="text-sm text-neutral-500 font-medium">Artisan Confectionery</p>
               </div>
             </Link>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-2">
-              {navItems.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="group relative px-4 py-3 rounded-xl text-neutral-700 hover:text-primary-600 hover:bg-primary-50/80 transition-all duration-300 morph-card hover:scale-105"
-                  >
-                    <div className="flex items-center space-x-3">
-                      <Icon className="w-5 h-5 group-hover:scale-110 transition-transform duration-300 group-hover:text-primary-500" />
-                      <span className="text-sm font-semibold">{item.label}</span>
-                    </div>
-                    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary-500/5 to-primary-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </Link>
-                );
-              })}
+              {navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="px-4 py-2 rounded-md text-neutral-700 hover:bg-neutral-100 hover:text-secondary transition-colors duration-300"
+                >
+                  <span className="text-sm font-semibold">{item.label}</span>
+                </Link>
+              ))}
             </div>
 
             {/* Search Bar */}
-            <div className="hidden md:flex items-center flex-1 max-w-md mx-8">
-              <div className="relative w-full morph-card hover:scale-105 transition-all duration-300">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neutral-400 transition-colors duration-200" />
+            <div className="hidden md:flex items-center flex-1 max-w-xs mx-8">
+              <div className="relative w-full">
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neutral-400" />
                 <input
                   type="text"
-                  placeholder="Search artisan sweets & chocolates..."
+                  placeholder="Search..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-12 pr-6 py-3 bg-white border-2 border-neutral-200 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 text-sm font-medium placeholder-neutral-400"
+                  className="w-full pl-12 pr-4 py-3 bg-neutral-100 border-2 border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-300 text-sm font-medium"
                 />
               </div>
             </div>
 
             {/* Right Actions */}
-            <div className="flex items-center space-x-4">
-              <button className="p-3 rounded-full hover:bg-neutral-100 transition-all duration-300 relative group morph-card hover:scale-110">
-                <Heart className="w-5 h-5 text-neutral-600 group-hover:text-red-500 transition-all duration-300 group-hover:scale-110" />
-                <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center animate-bounce-in shadow-lg">
-                  3
-                </span>
+            <div className="flex items-center space-x-2">
+              <button className="btn btn-secondary p-3">
+                <Heart className="w-5 h-5" />
               </button>
-              
-              <button className="p-3 rounded-full hover:bg-neutral-100 transition-all duration-300 relative group morph-card hover:scale-110">
-                <ShoppingCart className="w-5 h-5 text-neutral-600 group-hover:text-primary-600 transition-all duration-300 group-hover:scale-110" />
-                <span className="absolute -top-1 -right-1 w-5 h-5 bg-primary-500 text-white text-xs rounded-full flex items-center justify-center animate-bounce-in shadow-lg">
-                  2
-                </span>
+              <button className="btn btn-secondary p-3">
+                <ShoppingCart className="w-5 h-5" />
               </button>
-
-              <button className="p-3 rounded-full hover:bg-neutral-100 transition-all duration-300 group morph-card hover:scale-110">
-                <User className="w-5 h-5 text-neutral-600 group-hover:text-primary-600 transition-all duration-300 group-hover:scale-110" />
+              <button className="btn btn-secondary p-3">
+                <User className="w-5 h-5" />
               </button>
 
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="lg:hidden p-3 rounded-full hover:bg-neutral-100 transition-all duration-300 morph-card hover:scale-110 group"
+                className="lg:hidden btn btn-secondary p-3"
               >
-                {isMenuOpen ? (
-                  <X className="w-6 h-6 text-neutral-600 group-hover:text-primary-600 transition-colors" />
-                ) : (
-                  <Menu className="w-6 h-6 text-neutral-600 group-hover:text-primary-600 transition-colors" />
-                )}
+                {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
             </div>
           </div>
 
+          {/* Mobile Menu Overlay */}
+          <div
+            className={`fixed inset-0 z-40 bg-black bg-opacity-50 transition-opacity duration-300 ${isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+            onClick={() => setIsMenuOpen(false)}
+          ></div>
+
           {/* Mobile Menu */}
-          {isMenuOpen && (
-            <div className="lg:hidden border-t border-neutral-100 py-6 animate-slide-down">
-              <div className="space-y-4">
-                {/* Mobile Search */}
-                <div className="relative mb-6">
-                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neutral-400" />
-                  <input
-                    type="text"
-                    placeholder="Search artisan sweets..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-12 pr-6 py-4 bg-white border-2 border-neutral-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 text-base font-medium placeholder-neutral-400 morph-card"
-                  />
-                </div>
-                
-                {navItems.map((item) => {
-                  const Icon = item.icon;
-                  return (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      onClick={() => setIsMenuOpen(false)}
-                      className="flex items-center space-x-4 px-6 py-4 rounded-2xl text-neutral-700 hover:text-primary-600 hover:bg-primary-50/80 transition-all duration-300 morph-card hover:scale-105 group"
-                    >
-                      <Icon className="w-6 h-6 group-hover:scale-110 transition-transform duration-300 group-hover:text-primary-500" />
-                      <span className="text-base font-semibold">{item.label}</span>
-                    </Link>
-                  );
-                })}
+          <div
+            className={`fixed top-0 left-0 h-full w-80 bg-white z-50 shadow-2xl transform transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}
+          >
+            <div className="p-6">
+              {/* Logo and Close Button */}
+              <div className="flex items-center justify-between mb-8">
+                <Link href="/" className="flex items-center space-x-3">
+                  <div className="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center">
+                    <Store className="w-5 h-5 text-primary" />
+                  </div>
+                  <h1 className="text-xl font-bold text-neutral-800">Sweet Shop</h1>
+                </Link>
+                <button onClick={() => setIsMenuOpen(false)} className="p-2 text-neutral-500 hover:text-neutral-800">
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              {/* Mobile Search */}
+              <div className="relative mb-6">
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neutral-400" />
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-12 pr-4 py-3 bg-neutral-100 border-2 border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-300 text-sm font-medium"
+                />
+              </div>
+
+              {/* Navigation Links */}
+              <div className="space-y-2">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="flex items-center space-x-4 px-4 py-3 rounded-md text-base font-medium text-neutral-700 hover:bg-neutral-100 hover:text-secondary transition-colors duration-300"
+                  >
+                    <item.icon className="w-6 h-6" />
+                    <span>{item.label}</span>
+                  </Link>
+                ))}
               </div>
             </div>
-          )}
+          </div>
         </div>
       </nav>
     </>
