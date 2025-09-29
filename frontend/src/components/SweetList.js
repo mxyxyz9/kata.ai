@@ -86,18 +86,18 @@ export default function SweetList() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-white to-primary-50 flex items-center justify-center">
+      <div className="min-h-screen bg-neutral-50 flex items-center justify-center">
         <div className="text-center animate-fadeInUp">
           <div className="relative w-24 h-24 mx-auto mb-8">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary-400 to-secondary-400 rounded-full animate-ping opacity-20"></div>
-            <div className="relative w-24 h-24 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-full flex items-center justify-center animate-bounceIn">
+            <div className="absolute inset-0 bg-primary-400 rounded-full animate-ping opacity-20"></div>
+            <div className="relative w-24 h-24 bg-primary-500 rounded-full flex items-center justify-center animate-bounceIn">
               <Package className="w-12 h-12 text-white" />
             </div>
           </div>
           <h3 className="text-3xl font-bold text-neutral-800 mb-3 animate-fadeInUp animate-delay-200">Loading Sweet Collection...</h3>
           <p className="text-neutral-600 text-lg mb-8 animate-fadeInUp animate-delay-300">Preparing your premium confectionery experience</p>
           <div className="w-64 h-3 bg-neutral-200 rounded-full overflow-hidden animate-fadeInUp animate-delay-400 mx-auto">
-            <div className="h-full bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500 rounded-full animate-loading-bar"></div>
+            <div className="h-full bg-primary-500 rounded-full animate-loading-bar"></div>
           </div>
           <div className="mt-6 flex justify-center space-x-2 animate-fadeInUp animate-delay-500">
             <div className="w-2 h-2 bg-primary-400 rounded-full animate-bounce" style={{animationDelay: '0ms'}}></div>
@@ -111,11 +111,11 @@ export default function SweetList() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-white to-primary-50 flex items-center justify-center">
+      <div className="min-h-screen bg-neutral-50 flex items-center justify-center">
         <div className="text-center animate-fadeInUp max-w-md mx-auto">
           <div className="relative w-24 h-24 mx-auto mb-8">
-            <div className="absolute inset-0 bg-gradient-to-br from-red-400 to-orange-400 rounded-full animate-pulse opacity-20"></div>
-            <div className="relative w-24 h-24 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center animate-bounceIn">
+            <div className="absolute inset-0 bg-red-400 rounded-full animate-pulse opacity-20"></div>
+            <div className="relative w-24 h-24 bg-red-500 rounded-full flex items-center justify-center animate-bounceIn">
               <AlertTriangle className="w-12 h-12 text-white" />
             </div>
           </div>
@@ -123,7 +123,7 @@ export default function SweetList() {
           <p className="text-neutral-600 mb-8 text-lg animate-fadeInUp animate-delay-300">{error}</p>
           <button 
             onClick={fetchSweets} 
-            className="bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-700 hover:to-secondary-700 text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 animate-fadeInUp animate-delay-400 flex items-center gap-3 mx-auto"
+            className="bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 animate-fadeInUp animate-delay-400 flex items-center gap-3 mx-auto"
           >
             <RefreshCw className="w-5 h-5" />
             <span>Try Again</span>
@@ -134,9 +134,9 @@ export default function SweetList() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-white to-primary-50">
+    <div className="min-h-screen bg-neutral-50">
       {/* Hero Section */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-primary-600 via-primary-500 to-secondary-500 text-white">
+      <div className="relative overflow-hidden bg-primary-600 text-white">
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="relative max-w-7xl mx-auto px-6 py-16">
           <div className="text-center mb-12">
@@ -295,7 +295,7 @@ export default function SweetList() {
             style={{ animationDelay: `${index * 100}ms` }}
           >
             {/* Sweet Image Container */}
-            <div className={`relative ${viewMode === 'list' ? 'w-32 h-32 flex-shrink-0 mr-6' : 'aspect-square'} bg-gradient-to-br from-primary-100 via-secondary-50 to-accent-100 rounded-xl flex items-center justify-center border-4 border-white shadow-lg group-hover:shadow-xl transition-all duration-300`}>
+            <div className={`relative ${viewMode === 'list' ? 'w-32 h-32 flex-shrink-0 mr-6' : 'aspect-square'} bg-primary-100 rounded-xl flex items-center justify-center border-4 border-white shadow-lg group-hover:shadow-xl transition-all duration-300`}>
               <div className="text-7xl group-hover:scale-110 transition-transform duration-300">🍬</div>
               
               {/* Favorite Button - Top Right */}
@@ -313,7 +313,7 @@ export default function SweetList() {
               {/* Premium Badge */}
               {sweet.rating && sweet.rating >= 4.5 && (
                 <div className="absolute top-4 left-4">
-                  <span className="inline-flex items-center px-3 py-1 bg-gradient-to-r from-yellow-400 to-yellow-500 text-white text-xs font-bold rounded-full shadow-lg">
+                  <span className="inline-flex items-center px-3 py-1 bg-yellow-500 text-white text-xs font-bold rounded-full shadow-lg">
                     <Star className="w-3 h-3 mr-1 fill-current" />
                     Premium
                   </span>
@@ -385,7 +385,7 @@ export default function SweetList() {
                   <button className="p-3 bg-neutral-100 hover:bg-neutral-200 rounded-full transition-all duration-300 hover:scale-110">
                     <Eye className="w-5 h-5 text-neutral-600" />
                   </button>
-                  <button className="bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-700 hover:to-secondary-700 text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center gap-2">
+                  <button className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center gap-2">
                     <ShoppingCart className="w-5 h-5" />
                     <span>Add to Cart</span>
                   </button>
